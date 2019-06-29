@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 class Users extends Component {
-  state = { users: [] };
-
-  async componentDidMount() {
-    const req = await axios.get("https://jsonplaceholder.typicode.com/users");
-    this.setState({
-      users: req.data
-    });
-  }
+  // async componentDidMount() {
+  //   const req = await axios.get("https://jsonplaceholder.typicode.com/users");
+  //   this.setState({
+  //     users: req.data
+  //   });
+  // }
 
   ponerFilas = () =>
-    this.state.users.map(user => {
+    this.props.users.map(user => {
       return (
         <tr key={user.id}>
           <td>{user.name}</td>
@@ -40,4 +39,14 @@ class Users extends Component {
   }
 }
 
-export default Users;
+// connect recive:
+// 1. all reducers passed by provider
+// 2. action creators
+const mapStateToProps = reducers => {
+  return reducers.userReducer;
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Users);
