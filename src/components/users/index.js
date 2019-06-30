@@ -19,6 +19,13 @@ class Users extends Component {
     });
 
   render() {
+    if (this.props.loading) {
+      return <div>loading...</div>;
+    }
+
+    if (this.props.error) {
+      return <div>{this.props.error}</div>;
+    }
     return (
       <div>
         <table className="tabla">
