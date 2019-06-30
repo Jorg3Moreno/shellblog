@@ -2,10 +2,27 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as userActions from "../../actions/userAction";
 
+import Spinner from "../spinner";
+
 class Users extends Component {
   componentDidMount() {
     this.props.getAll();
   }
+
+  setContent = () => {
+    return (
+      <table className="tabla">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Enlace</th>
+          </tr>
+        </thead>
+        <tbody>{this.setRows()}</tbody>
+      </table>
+    );
+  };
 
   setRows = () =>
     this.props.users.map(user => {
@@ -20,26 +37,14 @@ class Users extends Component {
 
   render() {
     if (this.props.loading) {
-      return <div>loading...</div>;
+      return <Spinner />;
     }
 
     if (this.props.error) {
       return <div>{this.props.error}</div>;
     }
-    return (
-      <div>
-        <table className="tabla">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Enlace</th>
-            </tr>
-          </thead>
-          <tbody>{this.setRows()}</tbody>
-        </table>
-      </div>
-    );
+
+    return <div>{this.setContent()}</div>;
   }
 }
 
