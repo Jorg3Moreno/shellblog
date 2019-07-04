@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as userActions from "../../actions/userAction";
 
+import Table from "./Table";
 import Spinner from "../spinner";
 import Fatal from "../Fatal";
 
@@ -9,32 +10,6 @@ class Users extends Component {
   componentDidMount() {
     this.props.getAll();
   }
-
-  setContent = () => {
-    return (
-      <table className="tabla">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Enlace</th>
-          </tr>
-        </thead>
-        <tbody>{this.setRows()}</tbody>
-      </table>
-    );
-  };
-
-  setRows = () =>
-    this.props.users.map(user => {
-      return (
-        <tr key={user.id}>
-          <td>{user.name}</td>
-          <td>{user.email}</td>
-          <td>{user.website}</td>
-        </tr>
-      );
-    });
 
   render() {
     if (this.props.loading) {
@@ -45,7 +20,12 @@ class Users extends Component {
       return <Fatal message={this.props.error} />;
     }
 
-    return <div>{this.setContent()}</div>;
+    return (
+      <div>
+        <h1>Users</h1>
+        <Table />
+      </div>
+    );
   }
 }
 
