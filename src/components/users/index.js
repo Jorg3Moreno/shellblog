@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as userActions from "../../actions/userAction";
 
 import Spinner from "../spinner";
+import Fatal from "../Fatal";
 
 class Users extends Component {
   componentDidMount() {
@@ -41,7 +42,7 @@ class Users extends Component {
     }
 
     if (this.props.error) {
-      return <div>{this.props.error}</div>;
+      return <Fatal message={this.props.error} />;
     }
 
     return <div>{this.setContent()}</div>;
