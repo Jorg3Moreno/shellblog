@@ -8,6 +8,7 @@ import reducers from "./reducers";
 import reduxThunk from "redux-thunk";
 
 import "./css/index.css";
+import "./css/icons.css";
 
 // 1. first step for use Redux
 const store = createStore(

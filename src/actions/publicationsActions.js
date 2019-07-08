@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL, LOADING, ERROR } from "./../types/userTypes";
+import { GET_ALL, LOADING, ERROR } from "./../types/publicationTypes";
 
 export const getAll = () => async dispatch => {
   dispatch({
@@ -7,10 +7,12 @@ export const getAll = () => async dispatch => {
   });
 
   try {
-    const resp = await axios.get("https://jsonplaceholder.typicode.com/users");
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
     dispatch({
       type: GET_ALL,
-      payload: resp.data
+      payload: response.data
     });
   } catch (error) {
     dispatch({

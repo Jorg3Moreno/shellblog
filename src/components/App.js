@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Menu from "./menu";
 import Users from "./users";
 import Tasks from "./tasks";
+import Publications from "./publications";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <div className="margen">
         <Route exact path="/" component={Users} />
         <Route exact path="/task" component={Tasks} />
+        <Route exact path="/pubs/:key" component={Publications} />
       </div>
     </BrowserRouter>
   );
