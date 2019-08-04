@@ -10,9 +10,21 @@ export const getAll = () => async dispatch => {
     const response = await axios.get(
       "https://jsonplaceholder.typicode.com/todos"
     );
+
+    const tasks = {};
+    response.data.map(
+      todo =>
+        (tasks[todo.userId] = {
+          ...tasks[todo.userId],
+          [todo.id]: {
+            ...todo
+          }
+        })
+    );
+
     dispatch({
       type: GET_ALL,
-      payload: response.data
+      payload: tasks
     });
   } catch (error) {
     dispatch({
