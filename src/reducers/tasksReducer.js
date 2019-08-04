@@ -1,7 +1,7 @@
 import { GET_ALL, LOADING, ERROR } from "./../types/taskTypes";
 
 const INITIAL_STATE = {
-  tasks: [],
+  tasks: {},
   loading: false,
   error: null
 };
