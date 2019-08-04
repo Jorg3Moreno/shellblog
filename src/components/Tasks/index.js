@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as taskActions from "../../actions/tasksActions";
 import Spinner from "../spinner";
 import Fatal from "../Fatal";
+import { Link } from "react-router-dom";
 
 class Tasks extends Component {
   componentDidMount() {
@@ -44,8 +45,14 @@ class Tasks extends Component {
   };
 
   render() {
-    console.log(this.props);
-    return <div>{this.showContent()}</div>;
+    return (
+      <div>
+        <button>
+          <Link to="/tasks/save">New</Link>
+        </button>
+        {this.showContent()}
+      </div>
+    );
   }
 }
 
