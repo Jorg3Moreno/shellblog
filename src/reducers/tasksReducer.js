@@ -1,9 +1,17 @@
-import { GET_ALL, LOADING, ERROR } from "./../types/taskTypes";
+import {
+  GET_ALL,
+  LOADING,
+  ERROR,
+  CHANGE_USER_ID,
+  CHANGE_TITLE
+} from "./../types/taskTypes";
 
 const INITIAL_STATE = {
   tasks: {},
   loading: false,
-  error: null
+  error: null,
+  userId: "",
+  title: ""
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -14,6 +22,10 @@ const reducer = (state = INITIAL_STATE, action) => {
       return { ...state, loading: true };
     case ERROR:
       return { ...state, loading: false, error: action.payload };
+    case CHANGE_USER_ID:
+      return { ...state, userId: action.payload };
+    case CHANGE_TITLE:
+      return { ...state, title: action.payload };
     default:
       return state;
   }
