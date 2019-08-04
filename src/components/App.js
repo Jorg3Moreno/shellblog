@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import Menu from "./menu";
 import Users from "./users";
-import Tasks from "./tasks";
+import Tasks from "./Tasks";
 import Publications from "./publications";
 
 const App = () => {
