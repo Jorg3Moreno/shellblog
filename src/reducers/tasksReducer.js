@@ -3,7 +3,8 @@ import {
   LOADING,
   ERROR,
   CHANGE_USER_ID,
-  CHANGE_TITLE
+  CHANGE_TITLE,
+  SAVED_TASK
 } from "./../types/taskTypes";
 
 const INITIAL_STATE = {
@@ -26,6 +27,8 @@ const reducer = (state = INITIAL_STATE, action) => {
       return { ...state, userId: action.payload };
     case CHANGE_TITLE:
       return { ...state, title: action.payload };
+    case SAVED_TASK:
+      return { ...state, tasks: {}, loading: false, error: null };
     default:
       return state;
   }

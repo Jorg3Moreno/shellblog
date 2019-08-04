@@ -4,7 +4,8 @@ import {
   LOADING,
   ERROR,
   CHANGE_USER_ID,
-  CHANGE_TITLE
+  CHANGE_TITLE,
+  SAVED_TASK
 } from "../types/taskTypes";
 
 export const getAll = () => async dispatch => {
@@ -52,4 +53,27 @@ export const titleChange = title => dispatch => {
     type: CHANGE_TITLE,
     payload: title
   });
+};
+
+export const saveTask = newTask => async dispatch => {
+  dispatch({
+    type: LOADING
+  });
+
+  try {
+    const response = await axios.post(
+      "https://jsonplaceholder.typicode.com/todos",
+      newTask
+    );
+
+    dispatch({
+      type: SAVED_TASK
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: ERROR,
+      payload: "Problems to save task, try it later"
+    });
+  }
 };

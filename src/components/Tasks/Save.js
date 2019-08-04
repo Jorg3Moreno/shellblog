@@ -14,6 +14,17 @@ class Save extends Component {
     this.props.titleChange(event.target.value);
   };
 
+  saveTaskHandle = () => {
+    const { userId, title, saveTask } = this.props;
+    const newTask = {
+      userId,
+      title,
+      completed: false
+    };
+
+    saveTask(newTask);
+  };
+
   render() {
     return (
       <div>
@@ -34,7 +45,7 @@ class Save extends Component {
         />
         <br />
         <br />
-        <button>Save</button>
+        <button onClick={this.saveTaskHandle}>Save</button>
       </div>
     );
   }
