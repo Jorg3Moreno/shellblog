@@ -12,13 +12,20 @@ const INITIAL_STATE = {
   loading: false,
   error: null,
   userId: "",
-  title: ""
+  title: "",
+  return: false
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GET_ALL:
-      return { ...state, tasks: action.payload, loading: false, error: null };
+      return {
+        ...state,
+        tasks: action.payload,
+        loading: false,
+        error: null,
+        return: false
+      };
     case LOADING:
       return { ...state, loading: true };
     case ERROR:
@@ -28,7 +35,15 @@ const reducer = (state = INITIAL_STATE, action) => {
     case CHANGE_TITLE:
       return { ...state, title: action.payload };
     case SAVED_TASK:
-      return { ...state, tasks: {}, loading: false, error: null };
+      return {
+        ...state,
+        tasks: {},
+        loading: false,
+        error: null,
+        return: true,
+        userId: "",
+        title: ""
+      };
     default:
       return state;
   }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import * as tasksActions from "../../actions/tasksActions";
 
@@ -55,6 +56,7 @@ class Save extends Component {
   render() {
     return (
       <div>
+        {this.props.return ? <Redirect to="/task" /> : ""}
         <h1>Save Task</h1>
         User id:
         <input
