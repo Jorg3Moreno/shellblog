@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 
 import * as tasksActions from "../../actions/tasksActions";
 
+import Spinner from "../spinner";
+import Fatal from "../Fatal";
+
 class Save extends Component {
   changeUserIdHandle = event => {
     //action to prop: userIdChange
@@ -25,6 +28,30 @@ class Save extends Component {
     saveTask(newTask);
   };
 
+  disabledHandle = () => {
+    const { userId, title, loading } = this.props;
+
+    if (loading) {
+      return true;
+    }
+    if (!userId || !title) {
+      return true;
+    }
+
+    return false;
+  };
+
+  showAction = () => {
+    const { error, loading } = this.props;
+    if (loading) {
+      return <Spinner />;
+    }
+
+    if (error) {
+      return <Fatal message={error} />;
+    }
+  };
+
   render() {
     return (
       <div>
@@ -45,7 +72,10 @@ class Save extends Component {
         />
         <br />
         <br />
-        <button onClick={this.saveTaskHandle}>Save</button>
+        <button onClick={this.saveTaskHandle} disabled={this.disabledHandle()}>
+          Save
+        </button>
+        {this.showAction()}
       </div>
     );
   }

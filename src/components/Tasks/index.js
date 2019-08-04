@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 
 class Tasks extends Component {
   componentDidMount() {
-    this.props.getAll();
+    if (!Object.keys(this.props.tasks).length) {
+      this.props.getAll();
+    }
   }
 
   putTasks = user_id => {

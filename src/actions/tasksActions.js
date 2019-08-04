@@ -65,7 +65,8 @@ export const saveTask = newTask => async dispatch => {
       "https://jsonplaceholder.typicode.com/todos",
       newTask
     );
-
+    console.log(response.data);
+    
     dispatch({
       type: SAVED_TASK
     });
