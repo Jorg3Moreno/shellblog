@@ -8,7 +8,9 @@ import Fatal from "../Fatal";
 
 class Users extends Component {
   componentDidMount() {
-    this.props.getAll();
+    if (!this.props.users.lenght) {
+      this.props.getAll();
+    }
   }
 
   render() {

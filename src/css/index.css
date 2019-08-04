@@ -35,3 +35,13 @@ body {
 .danger {
   color: red;
 }
+
+.pub_title {
+  border-top: solid black;
+  cursor: pointer;
+}
+
+li {
+  margin: 15px 0 15px 0;
+  list-style-type: none;
+}

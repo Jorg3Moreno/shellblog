@@ -12,7 +12,7 @@ const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case GET_ALL:
       //esta parte es destructurar el estado que es un objeto
-      return { ...state, users: action.payload, loading: false };
+      return { ...state, users: action.payload, loading: false, error: null };
     case LOADING:
       return { ...state, loading: true };
     case ERROR:
