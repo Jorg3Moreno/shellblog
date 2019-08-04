@@ -1,7 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-const Tasks = () => {
-  return <div>Task</div>;
-};
+class Tasks extends Component {
+  render() {
+    console.log(this.props);
+    return <div>Tasks</div>;
+  }
+}
 
-export default Tasks;
+const mapStateToProps = ({ taskReducer }) => taskReducer;
+
+export default connect(mapStateToProps)(Tasks);
