@@ -16,6 +16,11 @@ const App = () => {
         <Route exact path="/task" component={Tasks} />
         <Route exact path="/pubs/:key" component={Publications} />
         <Route exact path="/tasks/save" component={SaveTask} />
+        <Route
+          exact
+          path="/tasks/save/:user_id/:task_id"
+          component={SaveTask}
+        />
       </div>
     </BrowserRouter>
   );

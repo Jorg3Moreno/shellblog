@@ -8,6 +8,23 @@ import Spinner from "../spinner";
 import Fatal from "../Fatal";
 
 class Save extends Component {
+  componentDidMount() {
+    const {
+      match: {
+        params: { user_id, task_id }
+      },
+      tasks,
+      userIdChange,
+      titleChange
+    } = this.props;
+
+    if (user_id && task_id) {
+      const task = tasks[user_id][task_id];
+      userIdChange(task.userId);
+      titleChange(task.title);
+    }
+  }
+
   changeUserIdHandle = event => {
     //action to prop: userIdChange
     this.props.userIdChange(event.target.value);
@@ -19,14 +36,35 @@ class Save extends Component {
   };
 
   saveTaskHandle = () => {
-    const { userId, title, saveTask } = this.props;
+    const {
+      match: {
+        params: { user_id, task_id }
+      },
+      tasks,
+      userId,
+      title,
+      saveTask,
+      editTask
+    } = this.props;
+
     const newTask = {
       userId,
       title,
       completed: false
     };
 
-    saveTask(newTask);
+    if (user_id && task_id) {
+      const task = tasks[userId][task_id];
+      const editedTask = {
+        ...newTask,
+        completed: task.completed,
+        id: task.id
+      };
+
+      editTask(editedTask);
+    } else {
+      saveTask(newTask);
+    }
   };
 
   disabledHandle = () => {
