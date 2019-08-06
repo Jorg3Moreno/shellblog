@@ -6,7 +6,8 @@ import {
   CHANGE_USER_ID,
   CHANGE_TITLE,
   SAVED_TASK,
-  UPDATE_TASK
+  UPDATE_TASK,
+  CLEAN
 } from "../types/taskTypes";
 
 export const getAll = () => async dispatch => {
@@ -66,7 +67,6 @@ export const saveTask = newTask => async dispatch => {
       "https://jsonplaceholder.typicode.com/todos",
       newTask
     );
-    console.log(response.data);
 
     dispatch({
       type: SAVED_TASK
@@ -90,7 +90,6 @@ export const editTask = editedTask => async dispatch => {
       `https://jsonplaceholder.typicode.com/todos/${editedTask.id}`,
       editedTask
     );
-    console.log(response.data);
 
     dispatch({
       type: SAVED_TASK
@@ -113,7 +112,6 @@ export const deleteTask = taskId => async dispatch => {
     const response = await axios.delete(
       `https://jsonplaceholder.typicode.com/todos/${taskId}`
     );
-    console.log(response);
 
     dispatch({
       type: GET_ALL,
@@ -155,4 +153,10 @@ export const checkChange = (userId, taskId) => async (dispatch, getState) => {
       payload: "Problems to edit task, try it later"
     });
   }
+};
+
+export const clearForm = () => dispatch => {
+  dispatch({
+    type: CLEAN
+  });
 };

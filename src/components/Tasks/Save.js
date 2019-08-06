@@ -15,13 +15,16 @@ class Save extends Component {
       },
       tasks,
       userIdChange,
-      titleChange
+      titleChange,
+      clearForm
     } = this.props;
 
     if (user_id && task_id) {
       const task = tasks[user_id][task_id];
       userIdChange(task.userId);
       titleChange(task.title);
+    } else {
+      clearForm();
     }
   }
 
